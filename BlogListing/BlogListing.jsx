@@ -15,6 +15,8 @@ import { Link } from 'react-router-dom';
 
 const BlogListing = () => {
     const [successMessage, setSuccessMessage] = useState('');
+    const [selectedBlogId, setSelectedBlogId] = useState(null);
+
     const { data: blogListing } = useQuery(BLOG_LISTING, {
         fetchPolicy: 'network-only',
         nextFetchPolicy: 'cache-and-network'
@@ -27,21 +29,42 @@ const BlogListing = () => {
     const blogs = blogListing ? blogListing.getBlogs : [];
     const categories = categoryListing ? categoryListing.getCategories : [];
 
+    const modal = document.getElementById('myModal');
+
+    const clickToShowModal = (blogId) => {
+        setSelectedBlogId(blogId);
+        modal.style.display = 'block';
+    };
+
+    const closeModal = () => {
+        setSelectedBlogId(null);
+        modal.style.display = 'none';
+    };
+
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    };
+
     const [deleteBlogMutation] = useMutation(DELETE_BLOG);
-    const deleteBlog = async (id) => {
+    const deleteBlog = async (blogId) => {
         try {
-            const { data: response } = await deleteBlogMutation({
-                variables: {
-                    id: id
-                },
-                refetchQueries: [{ query: BLOG_LISTING }]
-            });
-            if (response.deleteBlog.message) {
-                setSuccessMessage(response.deleteBlog.message);
+            if (blogId) {
+                const { data: response } = await deleteBlogMutation({
+                    variables: {
+                        id: blogId
+                    },
+                    refetchQueries: [{ query: BLOG_LISTING }]
+                });
+                closeModal();
+                if (response.deleteBlog.message) {
+                    setSuccessMessage(response.deleteBlog.message);
+                }
+                setTimeout(() => {
+                    setSuccessMessage('');
+                }, 2000);
             }
-            setTimeout(() => {
-                setSuccessMessage('');
-            }, 2000);
         } catch (error) {
             console.log(error);
         }
@@ -49,6 +72,29 @@ const BlogListing = () => {
 
     return (
         <div>
+            <div id="myModal" className="modal">
+                <div className="modal-content">
+                    <span className="close" onClick={() => closeModal()}>
+                        &times;
+                    </span>
+                    <p>Are you sure, you want to delete this blog?</p>
+                    <div className="button-modal">
+                        <button
+                            className="cancel-btn"
+                            onClick={() => closeModal()}
+                        >
+                            No
+                        </button>
+                        <button
+                            className="delete-btn"
+                            onClick={(e) => deleteBlog(selectedBlogId)}
+                        >
+                            Yes
+                        </button>
+                    </div>
+                </div>
+            </div>
+
             <div className="blog-listing">
                 <h1>
                     <strong>Blog Listing</strong>
@@ -109,7 +155,9 @@ const BlogListing = () => {
                                             <button
                                                 className="delete-btn"
                                                 onClick={() =>
-                                                    deleteBlog(blog.blog_id)
+                                                    clickToShowModal(
+                                                        blog.blog_id
+                                                    )
                                                 }
                                             >
                                                 Delete
