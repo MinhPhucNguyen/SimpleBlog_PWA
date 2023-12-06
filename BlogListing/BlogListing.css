@@ -1,0 +1,57 @@
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2023 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ *
+ */
+
+.blog-listing {
+    margin: 50px 0;
+}
+
+h1 {
+    font-size: 35px;
+}
+
+.blog-listing-table {
+    width: 100%;
+    margin-top: 30px;
+}
+
+table {
+    width: 100%;
+}
+
+td, th {
+    padding: 10px;
+    text-align: center;
+    /*border: 1px solid #ddd;*/
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+.add-new-btn {
+    float: right;
+    margin-bottom: 20px;
+    background: #1cc88a;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+}
+
+.action-column {
+    display: flex;
+    grid-gap: 10px;
+}
+
+.edit-btn {
+    color: #0a6aa1;
+}
+
+.delete-btn {
+    color: #dc3545;
+}

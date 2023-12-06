@@ -1,0 +1,60 @@
+/*
+ * @author    Tigren Solutions <info@tigren.com>
+ * @copyright Copyright (c) 2023 Tigren Solutions <https://www.tigren.com>. All rights reserved.
+ * @license   Open Software License ("OSL") v. 3.0
+ *
+ */
+
+.blog-create {
+    margin: 50px 0;
+}
+
+h1 {
+    font-size: 35px;
+}
+
+.back-btn {
+    margin-bottom: 20px;
+    background: red;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.blog-create-form {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-group textarea {
+    height: 100px;
+}
+
+.save-btn {
+    background: #1cc88a;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+    display: inline-block;
+}
