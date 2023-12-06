@@ -14,12 +14,12 @@ import { BLOG_LISTING, DELETE_BLOG } from '../../../graphql/blogList.gql';
 const BlogListing = () => {
     const [successMessage, setSuccessMessage] = useState('');
 
-    const { loading, data } = useQuery(BLOG_LISTING, {
-        fetchPolicy: 'cache-only',
+    const { loading, data, error } = useQuery(BLOG_LISTING, {
+        fetchPolicy: 'network-only',
         nextFetchPolicy: 'cache-and-network'
     });
 
-    const blogs = data.getBlogs;
+    const blogs = data ? data.getBlogs : [];
 
     const [deleteBlogMutation] = useMutation(DELETE_BLOG);
     const deleteBlog = async (id) => {
