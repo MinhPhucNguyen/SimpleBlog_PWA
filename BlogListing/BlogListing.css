@@ -55,3 +55,17 @@ tr:nth-child(even) {
 .delete-btn {
     color: #dc3545;
 }
+
+.alert {
+    margin-top: 20px;
+    width: 100%;
+    background: rgba(28, 200, 138, 0.82);
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+.success-message {
+    font-size: 18px;
+    color: white;
+    font-weight: 600;
+}
