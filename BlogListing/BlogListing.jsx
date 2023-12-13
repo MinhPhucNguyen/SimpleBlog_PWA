@@ -120,7 +120,6 @@ const BlogListing = () => {
                                 <th> Full Content</th>
                                 <th> Author</th>
                                 <th> Status</th>
-                                <th> Post Image</th>
                                 <th> Published At</th>
                                 <th> Action</th>
                             </tr>
@@ -143,7 +142,6 @@ const BlogListing = () => {
                                         <td>{blog.full_content}</td>
                                         <td>{blog.author}</td>
                                         <td>{blog.status}</td>
-                                        <td>{blog.post_image}</td>
                                         <td>{blog.published_at}</td>
                                         <td className="action-column">
                                             <Link

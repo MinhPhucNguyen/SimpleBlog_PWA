@@ -76,7 +76,6 @@ const CreateBlog = () => {
                 refetchQueries: [{ query: BLOG_LISTING }]
             });
             window.location.href = '/blog/list';
-            console.log(blogUpdated);
         } catch (error) {
             console.log(error);
         }
